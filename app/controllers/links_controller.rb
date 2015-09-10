@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all
     @link = Link.new
+    @links = Link.all
   end
 
   def create
@@ -19,18 +19,11 @@ class LinksController < ApplicationController
   def show
     if params[:short_link]
       @link = Link.find_by(short_link: params[:short_link])
-      if redirect_to @link.original_link
-        @link.visits += 1
-        @link.save
+      original_link = (@link.short_link.include? "http") ? @link.original_link : "http://#{@link.original_link}"
+      if redirect_to original_link
+        @link.increment_visits
       end
-    else
-      @link = Link.find(params[:short_link])
     end
-  end
-
-  def update
-    @link = Link.find(params[:id])
-    @link.update_attribute(:visits, visits + 1 )
   end
 
   def destroy
