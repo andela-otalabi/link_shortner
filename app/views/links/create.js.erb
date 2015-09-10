@@ -1,0 +1,3 @@
+// $('#url').html("<%= j (render @link) %>");
+
+$("<%= escape_javascript(render @link) %>").appendTo("#url");

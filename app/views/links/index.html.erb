@@ -1,0 +1,16 @@
+<%= form_for(@link, remote: true) do |f| %>
+ <% if @link.errors.any? %>
+ <ul>
+ <% @link.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>  
+    <% end %>
+   </ul> 
+ <% end %>
+   <%=f.text_field :original_link, :class => "validate", :placeholder => "Paste a link to shorten" %>
+   <%= f.label :original_link %>
+   <%= f.submit "Shorten" %>
+<% end %>
+
+<div id="url">
+  <%= render :partial => 'links/link' %>
+</div>
