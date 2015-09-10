@@ -3,13 +3,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome #{user_params[:first_name]} to dinner dash!"
-      redirect_to @user
+      flash[:success] = "Welcome #{user_params[:name]} !"
+      redirect_to user_path(@user)
     else
       flash[:error] = "One or more required fields are missing"
       render "new"
