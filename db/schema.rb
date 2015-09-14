@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910101508) do
+ActiveRecord::Schema.define(version: 20150913201334) do
+
+  create_table "clicks", force: :cascade do |t|
+    t.string   "ip_address"
+    t.string   "city"
+    t.string   "country_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "link_id"
+    t.integer  "counts"
+    t.string   "browser_type"
+    t.boolean  "device"
+  end
+
+  add_index "clicks", ["link_id"], name: "index_clicks_on_link_id"
 
   create_table "links", force: :cascade do |t|
     t.string   "original_link"
@@ -19,7 +33,10 @@ ActiveRecord::Schema.define(version: 20150910101508) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "visits",        default: 0
+    t.integer  "user_id"
   end
+
+  add_index "links", ["user_id"], name: "index_links_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

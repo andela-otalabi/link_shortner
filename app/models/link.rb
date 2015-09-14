@@ -6,9 +6,10 @@ class Link < ActiveRecord::Base
   # scope :recent, -> {order('created_at desc').limit(5)}
 
   belongs_to :user
+  has_many :clicks
 
   def increment_visits
-    self.update_attribute(:visits, visits + 1 )
+    self.increment!(:visits)
   end
 
   private

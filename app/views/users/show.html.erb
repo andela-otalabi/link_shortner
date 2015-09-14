@@ -1,1 +1,9 @@
-<%= @user.name %>, <%= @user.email %>
+<% current_user.links.each do |link| %>
+    <h3>Here's your shortened link: <%= root_url + link.short_link %></h3>
+    <p>for : <%= link.original_link %></p>
+    <span><%= link_to "See Details", statistics_path(link) %></span>
+    <span><%= button_to "Delete", link_path(link.id), method: :delete %></span>
+    <%= button_to "Edit link", root_path %>
+<% end %>
+
+<div id="stats"></div>

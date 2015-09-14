@@ -1,0 +1,23 @@
+<p>Total number of visitors to your link is <%= @find_link.visits %></p>
+<p>Analysis by visitors' countries</p>
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%  @country_frequencies.each do |country, count|%>
+    <tr>
+    <td><%= country %></td>
+    <td><%= count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>Browser stats</p>
+
+
+<p>Device stats</p>
