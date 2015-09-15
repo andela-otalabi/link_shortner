@@ -1,9 +1,24 @@
-<% current_user.links.each do |link| %>
-    <h3>Here's your shortened link: <%= root_url + link.short_link %></h3>
-    <p>for : <%= link.original_link %></p>
-    <span><%= link_to "See Details", statistics_path(link) %></span>
-    <span><%= button_to "Delete", link_path(link.id), method: :delete %></span>
-    <%= button_to "Edit link", root_path %>
-<% end %>
+<div class="container">
+  <div class="user_details">
+  <h2>Hello <%= @user.name %>!</h2>
+  </div>
+  <div class="user_profile">
+    <% @links.each do |link| %>
+    <ul class="list-group">
+      <li class="list-group-item hover">
+        <span class="badge"><%= link.original_link %></span>
+        <span><%= root_url + link.short_link %></span>
+        <span class="linkactions">
+        <%=form_for link, method: "put" do |f| %>
+          <%= link_to "Details", statistics_path(link), :class=>"btn btn-default inline-block" %>
+          <%= link_to "Edit", edit_link_path(link.id), :class=>"btn btn-default inline-block", remote: true %>
+          <%= button_to "Delete", link_path(link.id), method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-default inline-block" %>
+        <% end %>
+        </span>
+      </li>
+    </ul>
+    <% end %>
+  </div>
+</div>
 
-<div id="stats"></div>
+<%= render 'dialog' %>

@@ -1,12 +1,15 @@
-<%= form_for(@link, remote: true) do |f| %>
- <% if @link.errors.any? %>
-  <ul>
-    <% @link.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>  
+<div class="container">
+  <div class="form-layout">
+    <%= form_for(@link, remote: true) do |f| %>
+     <% if @link.errors.any? %>
+      <ul>
+        <% @link.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>  
+        <% end %>
+       </ul> 
+     <% end %>
+       <%=f.text_field :original_link, :class => "validate input-field", :placeholder => "Paste a link to shorten" %>
+       <%= f.submit "Shorten", :class => "btn btn-warning btn-lg" %>
     <% end %>
-   </ul> 
- <% end %>
-   <%=f.text_field :original_link, :class => "validate", :placeholder => "Paste a link to shorten" %>
-   <%= f.label :original_link %>
-   <%= f.submit "Shorten" %>
-<% end %>
+  </div>
+</div>

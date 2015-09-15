@@ -10,13 +10,14 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome #{user_params[:name]} !"
       redirect_to user_path(@user)
     else
-      flash[:error] = "One or more required fields are missing"
+      flash.now[:error] = "One or more required fields are missing"
       render "new"
     end
   end
 
   def show
     @user = User.find(params[:id])
+    @links = current_user.links
   end
 
   private

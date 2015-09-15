@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913201334) do
+ActiveRecord::Schema.define(version: 20150914104315) do
 
   create_table "clicks", force: :cascade do |t|
     t.string   "ip_address"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150913201334) do
     t.integer  "link_id"
     t.integer  "counts"
     t.string   "browser_type"
-    t.boolean  "device"
+    t.string   "device"
   end
 
   add_index "clicks", ["link_id"], name: "index_clicks_on_link_id"

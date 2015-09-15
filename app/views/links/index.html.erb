@@ -1,5 +1,17 @@
-<%= render  "form" %>
-
-<div id="url">
-  <%= render 'link' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+      <div class="image">
+      <%= image_tag("scissors.jpg") %>
+      </div>
+    </div>
+    <div class="col-md-11">
+      <div class="home-page">
+        <%= render "form" %>
+        <div id="url">
+          <%= render 'link' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

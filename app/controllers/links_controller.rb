@@ -10,7 +10,6 @@ class LinksController < ApplicationController
    @link.user_id = current_user.id if current_user
     respond_to do |format|
       if @link.save
-        @links = Link.all
         format.js 
         format.html {redirect_to links_path, notice: 'Link was successfully shortened.'}
       else
@@ -24,17 +23,37 @@ class LinksController < ApplicationController
     @link = Link.find_by(short_link: params[:short_link])
     save_click_details(@link)
     original_link = (@link.short_link.include? "http") ? @link.original_link : "http://#{@link.original_link}"
-      redirect_to original_link
-      @link.increment_visits
+    redirect_to original_link
+    @link.increment_visits
+  end
+
+  def edit
+    @link = find_link
+  end
+
+  def update
+    @link = find_link
+    respond_to do |format|
+      if @link.update(link_params)
+       flash[:success] = "Link updated successfully" 
+       format.html {redirect_to :back } 
+      else
+       format.html { render action: 'edit' }
+      end
+    end
   end
 
   def statistics
-    clicks_country_frequency(@find_link)
+    @link = find_link
+    clicks_country_frequency(@link)
+    browser_stats(@link)
+    device_stats(@link)
   end
 
   def destroy
-     @find_link.delete
-     redirect_to current_user
+    @link = find_link
+    @link.delete
+    redirect_to current_user
   end
  
  private
@@ -47,13 +66,17 @@ class LinksController < ApplicationController
   end
 
   def save_click_details(link)
-    user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"]) 
+    user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
     click = link.clicks.new
+    if user_agent.mobile? == false
+      click.device = "Web"
+    else
+      click.device = "Mobile" 
+    end
     click.ip_address = request.remote_ip
     click.city = request.location.data["city"]
     click.country_name = request.location.data["country_name"]
     click.browser_type = user_agent.browser
-    click.device = user_agent.mobile?
     click.save
   end
 
@@ -66,4 +89,19 @@ class LinksController < ApplicationController
     @country_frequencies = @country_frequencies.sort_by { |country, count| count}
   end
 
+  def browser_stats(link)
+    @browsers = link.clicks
+    @browser_types = Hash.new(0)
+    @browsers.each do |browser| 
+      @browser_types[browser.browser_type] += 1
+    end
+  end
+
+  def device_stats(link)
+    @devices = link.clicks
+    @devices_types = Hash.new(0)
+    @devices.each do |device| 
+     @devices_types[device.device] += 1
+    end
+  end
 end
