@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @links = current_user.links
+    # Link.order(visits: :desc)
   end
 
   private

@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  root "welcome#index"
+  root "links#index"
   get 'statistics/:id' => 'links#statistics', as: "statistics"
+  get 'sorts' => 'links#sort', as: "sort"
   resources :links
-  resources :users do
-    resources :links
-  end
+  resources :users 
   
   get 'signup'  => 'users#new'
   get 'login'   => 'sessions#new'

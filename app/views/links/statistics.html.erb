@@ -1,7 +1,7 @@
 <% if @link.visits > 0 %>
-<p>Total number of visitors to your link is <%= @link.visits %></p>
-<p>Analysis by visitors' countries</p>
-<table>
+<h1>Analysis</h1>
+<p>Total number of visitors: <%= @link.visits %></p>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Country</th>
@@ -9,17 +9,17 @@
     </tr>
   </thead>
   <tbody>
-    <% @country_frequencies.each do |country, count|%>
+  <% @country_frequencies.each do |country, count|%>
     <tr>
-    <td><%= country %></td>
-    <td><%= count %></td>
+      <td><%= country %></td>
+      <td><%= count %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
 <p>Browser stats</p>
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Browser</th>
@@ -37,7 +37,7 @@
 </table>
 
 <p>Device stats</p>
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Device</th>
@@ -54,24 +54,5 @@
   </tbody>
 </table>
 <% else %>
-<p>You don't have any shortened link yet </p>
+<p>This link has not been visited</p>
 <% end %>
-
-
-
-<table class="table table-striped table-hover ">
-  <thead>
-    <tr>
-      <th>Country</th>
-      <th>Count</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @country_frequencies.each do |country, count|%>
-    <tr>
-      <td><%= country %></td>
-      <td><%= count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>

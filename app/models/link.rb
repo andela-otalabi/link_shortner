@@ -2,10 +2,8 @@ class Link < ActiveRecord::Base
   before_validation :generate_short_link, :on => :create
   validates :short_link, uniqueness: true
   validates :short_link, :original_link, presence: true
-  default_scope {order('created_at desc')}
-  scope :date, -> { order('created_at desc') }
   scope :popularity, -> { order('visits desc') }
-
+  # default_scope {order('created_at desc')}
   belongs_to :user
   has_many :clicks
 

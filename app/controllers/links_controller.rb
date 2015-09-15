@@ -55,6 +55,14 @@ class LinksController < ApplicationController
     @link.delete
     redirect_to current_user
   end
+
+  def sort
+    @links = Link.popularity.all
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
  
  private
    def find_link

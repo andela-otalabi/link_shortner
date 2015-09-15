@@ -3,12 +3,8 @@
   <h2>Hello <%= @user.name %>!</h2>
   </div>
   <div class="user_profile">
-  <div class="popular">
-    <%= link_to "Sort by Popularity", statistics_path(link), :class=>"btn btn-default inline-block" %>
-  </div>
-  <div class="date">
-   <%= link_to "Sort by Date", statistics_path(link), :class=>"btn btn-default inline-block" %>
-  </div>
+    <%= link_to "Sort by Popularity", sort_path, :class=>"btn btn-default inline-block" , :id => "popular", remote: true %>
+    <div class="list">
     <% @links.each do |link| %>
     <ul class="list-group">
       <li class="list-group-item hover">
@@ -24,6 +20,7 @@
       </li>
     </ul>
     <% end %>
+    </div>
   </div>
 </div>
 
