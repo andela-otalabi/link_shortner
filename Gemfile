@@ -29,6 +29,8 @@ gem 'geocoder'
 
 gem 'useragent'
 
+gem 'gravtastic'
+
 gem 'font-awesome-rails'
 
 # Use ActiveModel has_secure_password

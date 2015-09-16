@@ -4,7 +4,7 @@ class LinksController < ApplicationController
     @link = Link.new
     if current_user
      @links = current_user.links.most_recent.all
-   else
+    else
     @links = Link.anonymous_links
   end
   end
@@ -49,7 +49,7 @@ class LinksController < ApplicationController
 
   def statistics
     @link = find_link
-    clicks_country_frequency(@link)
+    country_stats(@link)
     browser_stats(@link)
     device_stats(@link)
   end
@@ -92,7 +92,7 @@ class LinksController < ApplicationController
     click.save
   end
 
-  def clicks_country_frequency(link)
+  def country_stats(link)
     @countries = link.clicks
     @country_frequencies = Hash.new(0)
     @countries.each do |country| 

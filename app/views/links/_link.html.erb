@@ -1,9 +1,9 @@
-<div class="links">
+<div class="links text-right">
   <% if @links && !@links.empty? %>
-  <h1>Recently Shortened Links</h1>
+  <h1 class="home-header-recent">Recently Shortened Links</h1>
     <% @links.each do |link|%>
         <h3><%= root_url + link.short_link %></h3>
-        <h6><%= link.original_link %></h6>
+        <h6 class="small-link"><%= link.original_link %></h6>
     <% end %>
   <% end %>
 </div>

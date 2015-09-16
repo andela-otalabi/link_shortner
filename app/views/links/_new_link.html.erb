@@ -1,4 +1,6 @@
-<div class="links">
-  <h3>Here's your shortened link: <%= root_url + @link.short_link %></h3>
-  <p>for : <%= @link.original_link %></p>
+<div id="new_link">
+  <div class="links text-right">
+    <h3>Here's your shortened link: <%= root_url + @link.short_link %></h3>
+    <p class="small-link"><%= @link.original_link %></p>
+  </div>
 </div>

@@ -217,3 +217,29 @@ label.form-invalid:after {
   border-top-color: #777777;
   border-width: 6px;
 }
+.circle {
+  border-radius: 50%;
+}
+.user-thumb {
+  width: 150px;
+}
+.username-div {
+  display: inline !important;
+  padding: 30px 20px;
+}
+.right, {
+  float: right;
+}
+.right-aligned {
+  float: right;
+  margin-right: 10%;
+}
+.text-right {
+  text-align: right;
+}
+.home-header-recent {
+  padding: 20px 0;
+}
+.small-link {
+  color: #f0ad4e;
+}
