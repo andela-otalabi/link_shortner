@@ -57,7 +57,7 @@ class LinksController < ApplicationController
   end
 
   def sort
-    @links = Link.popularity.all
+    @links = current_user.links.popularity.all
     respond_to do |format|
       format.js
       format.html

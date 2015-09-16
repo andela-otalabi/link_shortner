@@ -2,10 +2,10 @@
   <div class="user_details">
   <h2>Hello <%= (@user.name if @user) || "" %>!</h2>
   </div>
+  <% if @links %>
   <div class="user_profile">
     <%= link_to "Sort by Popularity", sort_path, :class=>"btn btn-warning inline-block" , :id => "popular", remote: true %>
     <div class="list">
-  <% if @links %>
     <% @links.each do |link| %>
     <ul class="list-group">
       <li class="list-group-item hover">
@@ -21,11 +21,10 @@
       </li>
     </ul>
     <% end %>
-
   <% else %>
-   <div><p>You do not yet have any links</p></div>
-  <% end %>
+   <div><p>You do not have any links yet</p></div>
     </div>
+  <% end %>
   </div>
 </div>
 
