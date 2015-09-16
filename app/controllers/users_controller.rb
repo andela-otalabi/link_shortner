@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @links = current_user.links.recent if current_user.links
+    @links = current_user.links.most_recent if current_user.links
   end
 
   private

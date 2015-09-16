@@ -2,7 +2,11 @@ class LinksController < ApplicationController
   before_action :find_link, only: [:statistics, :destroy]
   def index
     @link = Link.new
-    @links = Link.recent.all
+    if current_user
+     @links = current_user.links.most_recent.all
+   else
+    @links = Link.anonymous_links
+  end
   end
 
   def create

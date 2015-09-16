@@ -3,7 +3,9 @@ class Link < ActiveRecord::Base
   validates :short_link, uniqueness: true
   validates :short_link, :original_link, presence: true
   scope :popularity, -> { order('visits desc') }
-  scope :recent, -> { order('created_at desc') } 
+  scope :most_recent, -> { order('created_at desc') } 
+  scope :anonymous_links, -> { where(user_id: nil) }
+
   belongs_to :user
   has_many :clicks
 
