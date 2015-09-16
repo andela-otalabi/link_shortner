@@ -2,7 +2,7 @@ class LinksController < ApplicationController
   before_action :find_link, only: [:statistics, :destroy]
   def index
     @link = Link.new
-    @links = Link.all
+    @links = Link.recent.all
   end
 
   def create

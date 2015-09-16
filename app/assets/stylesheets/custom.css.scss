@@ -4,6 +4,13 @@
 #main {
   margin-top: 50px;
 }
+#popular {
+  margin: 10px
+}
+.stats {
+  text-align: center;
+  margin-top: 50px;
+}
 .form-layout {
   text-align: center;
   margin-top: 100px;
@@ -24,6 +31,7 @@
 }
 .linkactions {
    display: inline-block !important;
+   margin-left: 50px !important;
 }
 .user_profile {
   margin-top: 50px;
@@ -39,10 +47,11 @@ a {
   color: black;
   text-decoration: none;
 }
-
 .badge {
     display: inline-block;
     min-width: 10px;
+    max-width: 500px;
+    overflow: scroll;
     padding: 3px 7px;
     font-size: 15px;
     font-weight: bold;
@@ -58,6 +67,7 @@ a {
 .table-hover {
   width: 400px;
   padding: 20px;
+  text-align: center;
 }
 .logo {
   padding: 15px 0;

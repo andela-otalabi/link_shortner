@@ -3,7 +3,7 @@ class Link < ActiveRecord::Base
   validates :short_link, uniqueness: true
   validates :short_link, :original_link, presence: true
   scope :popularity, -> { order('visits desc') }
-  # default_scope {order('created_at desc')}
+  scope :recent, -> { order('created_at desc') } 
   belongs_to :user
   has_many :clicks
 

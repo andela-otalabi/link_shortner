@@ -1,58 +1,69 @@
-<% if @link.visits > 0 %>
-<h1>Analysis</h1>
-<p>Total number of visitors: <%= @link.visits %></p>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Country</th>
-      <th>Count</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @country_frequencies.each do |country, count|%>
-    <tr>
-      <td><%= country %></td>
-      <td><%= count %></td>
-    </tr>
+<div class="container">
+<div class="row">
+  <div class="stats">
+  <% if @link.visits > 0 %>
+    <h1>Analysis</h1>
+    <p>Total number of visitors: <%= @link.visits %></p>
+  <div class="col-md-4">
+    <table class="table table-striped table-hover">
+    <p>Country stats</p>
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @country_frequencies.each do |country, count|%>
+        <tr>
+          <td><%= country %></td>
+          <td><%= count %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    <div class="col-md-4">
+    <table class="table table-striped table-hover">
+      <thead>
+      <p>Browser stats</p>
+        <tr>
+          <th>Browser</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @browser_types.each do |browser, count|%>
+        <tr>
+        <td><%= browser %></td>
+        <td><%= count %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    <div class="col-md-4">
+    <table class="table table-striped table-hover">
+      <thead>
+       <p>Device stats</p>
+        <tr>
+          <th>Device</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @devices_types.each do |device, count|%>
+        <tr>
+        <td><%= device %></td>
+        <td><%= count %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+    <% else %>
+    <p>This link has not been visited</p>
     <% end %>
-  </tbody>
-</table>
-
-<p>Browser stats</p>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Browser</th>
-      <th>Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @browser_types.each do |browser, count|%>
-    <tr>
-    <td><%= browser %></td>
-    <td><%= count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<p>Device stats</p>
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Device</th>
-      <th>Count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @devices_types.each do |device, count|%>
-    <tr>
-    <td><%= device %></td>
-    <td><%= count %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-<p>This link has not been visited</p>
-<% end %>
+  </div>
+  </div>
+</div>
