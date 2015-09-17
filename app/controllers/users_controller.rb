@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id]) if logged_in?
     if logged_in? && @user == current_user 
       @date_joined = @user.created_at.strftime('%d/%m/%Y')
       @links = User.includes(:links).where('user_id = "ruby is awesome"')

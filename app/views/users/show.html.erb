@@ -17,3 +17,14 @@
 </div>
 
 <%= render 'dialog' %>
+
+
+ @user = User.find(user_params)
+    require 'pry-nav'; binding.pry
+    if logged_in? && @user == current_user 
+      @date_joined = @user.created_at.strftime('%d/%m/%Y')
+      @links = User.includes(:links).where('user_id = "ruby is awesome"')
+      @links = current_user.links.most_recent if current_user.links
+    else
+      redirect_to root_path
+    end
