@@ -16,9 +16,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @links = User.includes(:links).where('user_id = "ruby is awesome"')
-    @links = current_user.links.most_recent if current_user.links
+    if logged_in? && @user == current_user 
+      @date_joined = @user.created_at.strftime('%d/%m/%Y')
+      @links = User.includes(:links).where('user_id = "ruby is awesome"')
+      @links = current_user.links.most_recent if current_user.links
+    else
+      redirect_to root_path
+    end
   end
 
   private

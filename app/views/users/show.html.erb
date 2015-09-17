@@ -2,34 +2,15 @@
   <div class="user_details">
     <%= image_tag @user.gravatar_url, :class=>"circle user-thumb" %>
     <h2 class="username-div">Hello <%= (@user.name if @user) || "" %>!</h2>
-  </div>
+    <p class="date-joined">joined on <%= @date_joined %></p>
+    </div>
   <% if @links.any? %>
     <div class="row">
       <div class="col-lg-12">
         <%= link_to "Sort by Popularity", sort_path, :class=>"btn btn-warning inline-block right" , :id => "popular", remote: true %>
       </div>
     </div>
-    <div class="col-lg-12">
-      <div class="user_profile">
-      <div class="link_list">
-        <% @links.each do |link| %>
-        <ul class="list-group">
-          <li class="list-group-item hover">
-            <span class="badge"><%= link.original_link %></span>
-            <span><%= root_url + link.short_link %></span>
-            <span class="linkactions">
-            <%=form_for link, method: "put" do |f| %>
-              <%= link_to "Details", statistics_path(link), :class=>"btn btn-default inline-block" %>
-              <%= link_to "Edit", edit_link_path(link.id), :class=>"btn btn-default inline-block", remote: true %>
-              <%= button_to "Delete", link_path(link.id), method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-default inline-block" %>
-            <% end %>
-            </span>
-          </li>
-        </ul>
-        <% end %>
-      </div>
-      </div>
-    </div>
+    <%= render 'links/user_links' %>
   <% else %>
     <p>You do not have any links yet</p>
   <% end %>

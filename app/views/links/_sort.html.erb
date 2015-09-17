@@ -10,6 +10,7 @@
         <%= button_to "Delete", link_path(link.id), method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-default inline-block" %>
       <% end %>
       </span>
+      <span><h6><%=pluralize(link.visits, "visit") %></h6></span>
     </li>
   </ul>
 <% end %>

@@ -3,10 +3,10 @@ class LinksController < ApplicationController
   def index
     @link = Link.new
     if current_user
-     @links = current_user.links.most_recent.all
+     @links = (current_user.links.most_recent).limit(6)
     else
-    @links = Link.anonymous_links
-  end
+      @links = (Link.anonymous_links).limit(6)
+    end
   end
 
   def create
@@ -50,9 +50,13 @@ class LinksController < ApplicationController
 
   def statistics
     @link = find_link
-    country_stats(@link)
-    browser_stats(@link)
-    device_stats(@link)
+    if @link.user_id == current_user.id
+      country_stats(@link)
+      browser_stats(@link)
+      device_stats(@link)
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -71,7 +75,7 @@ class LinksController < ApplicationController
  
  private
    def find_link
-    @find_link = Link.find(params[:id])
+     @find_link = Link.find(params[:id])
    end 
 
   def link_params
