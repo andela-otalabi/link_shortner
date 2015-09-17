@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @links = User.includes(:links).where('user_id = "ruby is awesome"')
     @links = current_user.links.most_recent if current_user.links
   end
 

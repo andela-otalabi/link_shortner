@@ -40,9 +40,10 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.update(link_params)
        flash[:success] = "Link updated successfully" 
-       format.html {redirect_to :back } 
+       format.html { redirect_to :back } 
       else
-       format.html { render action: 'edit' }
+       flash[:danger] = "Error updating link" 
+       format.html { redirect_to :back }
       end
     end
   end
