@@ -1,7 +1,10 @@
 class Link < ActiveRecord::Base
   before_validation :generate_short_link, :on => :create
-  validates :short_link, uniqueness: true
-  validates :short_link, :original_link, presence: true
+
+  VALID_URL_REGEX = /((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\.\/\?\:@\-_=#])*/
+  validates :original_link, presence: true, 
+            format: { with: VALID_URL_REGEX }
+  validates :short_link, uniqueness: true, presence: true
   scope :popularity, -> { order('visits desc') }
   scope :most_recent, -> { order('created_at desc') } 
   scope :anonymous_links, -> { where(user_id: nil) }

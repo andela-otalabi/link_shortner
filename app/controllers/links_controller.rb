@@ -15,9 +15,11 @@ class LinksController < ApplicationController
     respond_to do |format|
       if @link.save
         format.js 
-        format.html {redirect_to links_path, notice: 'Link was successfully shortened.'}
+        format.html {redirect_to links_path}
       else
-        format.html {render action: 'new'  }
+        flash[:warning] = "Enter a valid URL"
+        format.js {}
+        format.html {render action: 'new'}
       end
     end 
   end

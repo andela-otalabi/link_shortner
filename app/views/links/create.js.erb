@@ -1,1 +1,11 @@
-$('#url').prepend("<%=j render 'links/new_link' %>");
+<% if flash[:warning] || flash[:successs] %>
+  <% flash.each do |message_type, message| %>
+    $('#flash_messages').html('<div class="alert alert-<%= message_type %>"><%= message %></div>'); 
+    <% flash[message_type] = nil %>
+  <% end %>
+<% else %>
+  $('#url').prepend("<%=j render 'links/new_link' %>"); 
+<% end %>
+
+
+

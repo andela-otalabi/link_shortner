@@ -25,9 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-
   def sort
-    
     if params["key"] == "2"
       @links = current_user.links.popularity.all
       respond_to do |format|

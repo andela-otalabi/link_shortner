@@ -3,7 +3,9 @@
   <h1 class="home-header-recent">Recently Shortened Links</h1>
     <% @links.each do |link|%>
         <h3><%= root_url + link.short_link %></h3>
-        <h6 class="small-link"><%= link.original_link %></h6>
+        <div class="small_link">
+        <h6><%= link.original_link %></h6>
+        </div>
     <% end %>
   <% end %>
 </div>

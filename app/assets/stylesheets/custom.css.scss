@@ -38,7 +38,9 @@ body {
 .link-actions {
    display: inline-block !important;
    margin: -70px 0 50px 0 !important;
-
+}
+.links {
+  text-align: center;
 }
 .user_profile {
   margin-top: 20px;
@@ -250,8 +252,12 @@ margin-left: 400px;
 .home-header-recent {
   padding: 20px 0;
 }
-.small-link {
+.small_link {
+  margin-left: 260px;
+  text-align: center;
+  width: 600px;
   color: #f0ad4e;
+  overflow: scroll;
 }
 .all_links {
   margin-top: 50px;
@@ -330,10 +336,17 @@ border-radius: 10px;
   text-align: left !important;
 }
 .link-view {
-  max-width: 500px;
+  max-width: 70% !important;
+}
+.small {
+  overflow: scroll;
+  font-size: 15px;
 }
 .divider {
-  margin: 10px;
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 70px;
+  padding: 10px;
 }
 .text_edit_input {
   width: 300px !important;
@@ -350,4 +363,15 @@ border-radius: 10px;
 }
 .device {
   background-color: #FF864C;
+}
+.table {
+  width: 270px;
+  text-align: center;
+  padding: 5px;
+}
+.table_header {
+  text-align: center;
+}
+th {
+    text-align: center !important;
 }
