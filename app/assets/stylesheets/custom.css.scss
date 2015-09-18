@@ -35,9 +35,10 @@ body {
   height: 150px;
   width: 300px;
 }
-.linkactions {
+.link-actions {
    display: inline-block !important;
-   margin-left: 50px !important;
+   margin: -70px 0 50px 0 !important;
+
 }
 .user_profile {
   margin-top: 20px;
@@ -45,9 +46,10 @@ body {
 }
 .user_details {
   margin-top: 50px;
+  position: fixed;
 }
-li:hover {
-   background-color: #ffedcc;
+.list-group-item {
+  background-color: #ffedcc;
 }
 a {
   color: black;
@@ -70,10 +72,13 @@ a {
     border-radius: 1;
     margin-top: 10px;
 }
+.table{
+  align: center;
+}
 .table-hover {
-  width: 400px;
-  padding: 20px;
-  text-align: center;
+  width: 300px;
+  padding: 5px;
+  text-align: left;
 }
 .logo {
   padding: 15px 0;
@@ -257,20 +262,22 @@ margin-left: 400px;
   color: white;
 }
 input[type="text"]{
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
+  width: 700px;
+  height: 70px;
+  font-size: 25px;
+  text-align: center;
 }
 input[type="text"]:focus{
 outline: none;
 box-shadow: 0px 0px 5px #f0ad4e;
 border:1px solid #f0ad4e;
-border-radius: 10px;
+border-radius: 10px 0 0 10px;
 }
-
 input[type="text"]:hover{
 border: 1px solid #999;
-border-radius: 10px;
+border-radius: 10px 0 0 10px;
 }
-
 input[type="text"]:focus:hover{
 outline: none;
 box-shadow: 0px 0px 5px #f0ad4e;
@@ -307,4 +314,40 @@ border-radius: 10px;
   .badge {
     max-width: 200px;
   }
+}
+.btn-lg, .btn-group-lg > .btn {
+    padding: 10px 16px;
+    font-size: 18px;
+    height: 70px;
+    border-radius: 0 10px 10px 0 ;
+    margin-bottom: 9px;
+}
+.text_input {
+  width: 165px !important;
+  height: 24px !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  text-align: left !important;
+}
+.link-view {
+  max-width: 500px;
+}
+.divider {
+  margin: 10px;
+}
+.text_edit_input {
+  width: 300px !important;
+  height: 24px !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  text-align: left !important;
+}
+.country {
+  background-color: #F9E1D5;
+}
+.browser {
+  background-color: #FFB38F;
+}
+.device {
+  background-color: #FF864C;
 }

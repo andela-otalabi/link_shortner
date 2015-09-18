@@ -19,12 +19,25 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) if logged_in?
     if logged_in? && @user == current_user 
       @date_joined = @user.created_at.strftime('%d/%m/%Y')
-      @links = User.includes(:links).where('user_id = "ruby is awesome"')
-      @links = current_user.links.most_recent if current_user.links
+      sort
     else
       redirect_to root_path
     end
   end
+
+
+  def sort
+    
+    if params["key"] == "2"
+      @links = current_user.links.popularity.all
+      respond_to do |format|
+        format.js
+      end
+    else 
+      @links = current_user.links.most_recent if current_user.links
+    end
+  end
+
 
   private
 
@@ -32,3 +45,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
+
+

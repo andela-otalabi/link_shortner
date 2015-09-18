@@ -1,19 +1,22 @@
 <div class="container">
-  <div class="user_details">
-    <%= image_tag @user.gravatar_url, :class=>"circle user-thumb" %>
-    <h2 class="username-div">Hello <%= (@user.name if @user) || "" %>!</h2>
-    <p class="date-joined">joined on <%= @date_joined %></p>
+  <div class="row">
+   <div class="col-lg-3">
+     <div class="user_details">
+        <%= image_tag @user.gravatar_url, :class=>"circle user-thumb" %>
+        <p><%= (@user.name if @user) || "" %></p>
+        <p><%= @user.email %></p>
+        <p>joined on <%= @date_joined %></p>
     </div>
+  </div>
   <% if @links.any? %>
-    <div class="row">
-      <div class="col-lg-12">
-        <%= link_to "Sort by Popularity", sort_path, :class=>"btn btn-warning inline-block right" , :id => "popular", remote: true %>
-      </div>
-    </div>
-    <%= render 'links/user_links' %>
+    <div class="col-lg-9">
+      <%= link_to "Sort by Popularity", sort_path(key: 2), :class=>"btn btn-primary inline-block right" , :id => "popular", remote: true %>
+      <%= render 'links/user_links' %>
   <% else %>
     <p>You do not have any links yet</p>
   <% end %>
+  </div> 
+</div>
 </div>
 
 <%= render 'dialog' %>

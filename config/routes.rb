@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "links#index"
   get 'statistics/:id' => 'links#statistics', as: "statistics"
-  get 'sorts' => 'links#sort', as: "sort"
+  get 'sorts/:key' => 'users#sort', as: "sort"
   resources :links
   resources :users 
   

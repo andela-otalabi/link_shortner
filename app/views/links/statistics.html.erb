@@ -3,10 +3,12 @@
   <div class="stats">
   <% if @link.visits > 0 %>
     <h1>Analysis</h1>
-  <div class="col-md-4">
+  <div class="col-sm-3 divider country">
     <table class="table table-striped table-hover">
-    <p>Country stats</p>
       <thead>
+      <tr>
+      <th colspan="2">Country Based</th>
+      </tr>
         <tr>
           <th>Country</th>
           <th>Count</th>
@@ -22,10 +24,12 @@
       </tbody>
     </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-3 divider browser">
     <table class="table table-striped table-hover">
-      <thead>
-      <p>Browser stats</p>
+      <thead> 
+        <tr>
+          <th colspan="2">Browser Type</th>
+        </tr>
         <tr>
           <th>Browser</th>
           <th>Count</th>
@@ -41,10 +45,12 @@
       </tbody>
     </table>
     </div>
-    <div class="col-md-4">
+    <div class="col-sm-3 divider device">
     <table class="table table-striped table-hover">
       <thead>
-       <p>Device stats</p>
+        <tr>
+          <th colspan="2">Device Type</th>
+        </tr>
         <tr>
           <th>Device</th>
           <th>Count</th>

@@ -26,7 +26,7 @@ class LinksController < ApplicationController
     @user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
     @link = Link.find_by(short_link: params[:short_link])
     save_click_details(@link)
-    original_link = (@link.short_link.include? "http") ? @link.original_link : "http://#{@link.original_link}"
+    original_link = (@link.original_link.include? "http") ? @link.original_link : "http://#{@link.original_link}"
     redirect_to original_link
     @link.increment_visits
   end

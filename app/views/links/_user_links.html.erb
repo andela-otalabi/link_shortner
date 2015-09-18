@@ -3,17 +3,19 @@
   <div class="link_list">
     <% @links.each do |link| %>
     <ul class="list-group">
-      <li class="list-group-item hover">
-        <span class="badge"><%= link.original_link %></span>
-        <span><%= root_url + link.short_link %></span>
-        <span class="linkactions">
-        <%=form_for link, method: "put" do |f| %>
-          <%= link_to "Details", statistics_path(link), :class=>"btn btn-default inline-block" %>
-          <%= link_to "Edit", edit_link_path(link.id), :class=>"btn btn-default inline-block", remote: true %>
-          <%= button_to "Delete", link_path(link.id), method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-default inline-block" %>
-        <% end %>
+      <li class="list-group-item">
+      <div class="link-view">
+        <h5>New link: <%= root_url + link.short_link %></h5>
+        <h6>Old link: <%= link.original_link %></h6>
+      </div>
+      <span class="link-actions pull-right">
+      <p><h6><%=pluralize(link.visits, "visit") %></h6></p>
+      <%=form_for link, method: "put" do |f| %>
+        <%= link_to "Details", statistics_path(link), :class=>"btn btn-default inline-block" %>
+        <%= link_to "Edit", edit_link_path(link.id), :class=>"btn btn-primary inline-block", remote: true %>
+        <%= button_to "Delete", link_path(link.id), method: :delete, data: { confirm: 'Are you sure?' } , :class=>"btn btn-danger inline-block" %>
+      <% end %>
         </span>
-        <span><h6><%=pluralize(link.visits, "visit") %></h6></span>
       </li>
     </ul>
     <% end %>
