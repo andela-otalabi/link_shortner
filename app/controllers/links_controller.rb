@@ -5,7 +5,7 @@ class LinksController < ApplicationController
     if current_user
      @links = (current_user.links.most_recent).limit(6)
     else
-      @links = (Link.anonymous_links).limit(6)
+      @links = (Link.anonymous_links.most_recent).limit(6)
     end
   end
 
