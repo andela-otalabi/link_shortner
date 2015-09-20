@@ -53,9 +53,9 @@ class LinksController < ApplicationController
   def statistics
     @link = find_link
     if @link.user_id == current_user.id
-      country_stats(@link)
-      browser_stats(@link)
-      device_stats(@link)
+      @country_frequencies = find_number_of_rows(@link, "country_name")
+      @browser_types = find_number_of_rows(@link, "browser_type")
+      @devices_types = find_number_of_rows(@link, "device")
     else
       redirect_to root_path
     end
@@ -99,28 +99,18 @@ class LinksController < ApplicationController
     click.save
   end
 
-  def country_stats(link)
-    @countries = link.clicks
-    @country_frequencies = Hash.new(0)
-    @countries.each do |country| 
-      @country_frequencies[country.country_name] += 1
+  def find_number_of_rows(link, column_name)
+    clicks = link.clicks
+    @frequency = Hash.new(0)
+    clicks.each do |click|
+      if column_name == "country_name"
+        @frequency[click.country_name] += 1
+      elsif column_name == "browser_type"
+        @frequency[click.browser_type] += 1
+      else
+        @frequency[click.device] += 1
+      end
     end
-    @country_frequencies = @country_frequencies.sort_by { |country, count| count}
-  end
-
-  def browser_stats(link)
-    @browsers = link.clicks
-    @browser_types = Hash.new(0)
-    @browsers.each do |browser| 
-      @browser_types[browser.browser_type] += 1
-    end
-  end
-
-  def device_stats(link)
-    @devices = link.clicks
-    @devices_types = Hash.new(0)
-    @devices.each do |device| 
-     @devices_types[device.device] += 1
-    end
+    @frequency
   end
 end
