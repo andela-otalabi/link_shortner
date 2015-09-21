@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  before_action :find_link, only: [:statistics, :destroy]
+  before_action :find_link, only: [:statistics, :update, :destroy]
   def index
     @link = Link.new
     if current_user
@@ -65,14 +65,6 @@ class LinksController < ApplicationController
     @link = find_link
     @link.delete
     redirect_to current_user
-  end
-
-  def sort
-    @links = current_user.links.popularity.all
-    respond_to do |format|
-      format.js
-      format.html
-    end
   end
  
  private
