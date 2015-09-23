@@ -26,13 +26,14 @@ class UsersController < ApplicationController
   end
 
   def sort
+  @user = User.includes(:links).where(:id => params[:id]).first
     if params["key"] == "2"
-      @links = current_user.links.popularity.all
+      @links = @user.links.popularity.all
       respond_to do |format|
         format.js
       end
     else 
-      @links = current_user.links.most_recent if current_user.links
+      @links = @user.links.most_recent if current_user.links
     end
   end
 
